@@ -22,6 +22,13 @@ export default function Sessions() {
             .then(data => setSessions(data));
     }, []);
 
+    const formatDate = (dateStr) => {
+        if (!dateStr) return "N/A";
+        const date = new Date(dateStr);
+        return isNaN(date.getTime()) ? "Invalid Date" : date.toLocaleString();
+    };
+
+
     // Handle form submission
     const handleSubmit = async e => {
         e.preventDefault();
@@ -91,13 +98,13 @@ export default function Sessions() {
                                 onChange={e => setFormData({ ...formData, description: e.target.value })}
                             />
                             <input
-                                type="datetime-local"
+                                type="date"
                                 value={formData.startTime}
                                 onChange={e => setFormData({ ...formData, startTime: e.target.value })}
                                 required
                             />
                             <input
-                                type="datetime-local"
+                                type="date"
                                 value={formData.endTime}
                                 onChange={e => setFormData({ ...formData, endTime: e.target.value })}
                                 required
